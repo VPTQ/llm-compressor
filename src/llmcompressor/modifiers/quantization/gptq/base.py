@@ -303,8 +303,8 @@ class GPTQModifier(Modifier):
                 layer_compressor.post_compress()
                 layer_compressor.revert_layer_wrappers()
 
-                # perform a second forward pass of the module to calculate weight-quantized
-                # outputs for use as inputs to the next layer (block)
+                # perform a second forward pass of the module to calculate
+                # weight-quantized outputs for use as inputs to the next layer
                 quantized_outputs = layer_compressor.calibrate_layer(intermediates)
                 error = get_output_error(unquantized_outputs, quantized_outputs)
                 logger.info(f"Mean output error from quantization: {error:.3f}")
